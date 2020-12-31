@@ -8,7 +8,7 @@ const users=[
     },
     {
         name:'John Doe',
-        email:"admin@example.com",
+        email:"John@example.com",
         password:bcrypt.hashSync('123456',10),
     },
     {
