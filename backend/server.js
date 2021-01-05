@@ -1,8 +1,10 @@
 const express=require('express')
 const dotenv=require('dotenv')
 const colors =require('colors')
-const products=require('./data/products')
 const connectDB =require('./config/db')
+const router =require('./routes/productRoutes')
+const notFound=require('./middleware/errorMiddleware')
+const errorHandler=require('./middleware/errorMiddleware')
 
 dotenv.config()
 
@@ -14,14 +16,11 @@ app.get('/',(req,res)=>{
     res.send('API is running...')
 })
 
-app.get('/api/products',(req,res)=>{
-    res.json(products)
-})
+app.use('/api/products',router)
 
-app.get('/api/products/:id',(req,res)=>{
-    const product=products.find((p)=>p._id===req.params.id)
-    res.json(product)
-})
+app.use(notFound)
+
+app.use(errorHandler)
 
 const PORT =process.env.PORT || 5000
 
