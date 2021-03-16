@@ -1,5 +1,5 @@
 const mongosoe =require('mongoose')
-
+const bcrypt =require('bcryptjs')
 const userSchema=mongosoe.Schema({
     name:{
         type:String,
@@ -23,6 +23,10 @@ const userSchema=mongosoe.Schema({
 {
     timestamps:true
 })
+
+userSchema.methods.matchPassword=async function(enterPassword){
+    return await bcrypt.compare(enterPassword,this.password)
+}
 
 const User =mongosoe.model('User',userSchema)
 
