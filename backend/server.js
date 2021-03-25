@@ -6,6 +6,7 @@ const router =require('./routes/productRoutes')
 const notFound=require('./middleware/errorMiddleware')
 const errorHandler=require('./middleware/errorMiddleware')
 const userRoutes =require('./routes/userRouters')
+const orderRoutes =require('./routes/orderRoutes')
 
 dotenv.config()
 
@@ -21,6 +22,7 @@ app.get('/',(req,res)=>{
 
 app.use('/api/products',router)
 app.use('/api/users',userRoutes)
+app.use('/api/orders',orderRoutes)
 
 app.use(notFound)
 
