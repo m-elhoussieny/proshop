@@ -3,8 +3,9 @@ const mongosoe =require('mongoose')
 const orderSchema=mongosoe.Schema(
     {
     user:{
-        type:String,
-        required:true
+        type:mongosoe.Schema.Types.ObjectId,
+        required:true,
+        ref:'User'
     },
     orderItems:[
         {
